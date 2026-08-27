@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 图形推理</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">图形推理</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "tuxing";
+var COURSE = {
+  title: "图形推理 · 解锁式刷题", subtitle: "位置·样式·属性·空间重构", version: 1,
+  nodes: [
+    { id: "kp1", title: "位置规律",
+      lesson: "位置规律是图形推理最基础的规律：\n\n" +
+        "1. 平移：元素沿直线或圆周移动，注意步数和方向；\n" +
+        "2. 旋转：元素绕点转动，注意角度（45°/90°/180°）；\n" +
+        "3. 翻转：上下翻或左右翻，翻转后图形不对称；\n" +
+        "4. 遍历：一组图中元素种类轮番出现，缺啥补啥。\n\n" +
+        "判断技巧：元素完全相同时，优先考虑位置规律。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "九宫格中，元素完全相同、小黑点每次顺时针移动一格，这体现的是？",
+          options: ["旋转", "平移", "翻转", "叠加"], answer: 1,
+          explain: "元素本身不变、沿固定路径移动，是平移规律。" },
+        { id: "q2", type: "multi", stem: "下列哪些属于位置类规律？（多选）",
+          options: ["平移", "旋转", "遍历", "封闭区间数"],
+          answer: [0, 1, 2],
+          explain: "平移、旋转、遍历都属位置类；封闭区间数属于数量类规律。" }
+      ]
+    },
+    { id: "kp2", title: "样式规律",
+      lesson: "样式规律考查图形的组合与变化：\n\n" +
+        "1. 叠加：两图叠加得到第三图，包括简单叠加、去同存异、去异存同；\n" +
+        "2. 样式遍历：一组图形包含的元素种类相同，每个元素出现次数相同；\n" +
+        "3. 渐变：图形特征逐渐变化。\n\n" +
+        "判断技巧：元素相似（同元素少部分变化）时，优先考虑样式规律。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "两个图形叠加后，相同部分去掉、不同部分保留，这是？",
+          options: ["简单叠加", "去同存异", "去异存同", "样式遍历"], answer: 1,
+          explain: "去同存异是指两图叠加后，相同的部分去掉，不同的部分保留。" },
+        { id: "q2", type: "choice", stem: "样式遍历的核心是？",
+          options: ["元素位置移动", "元素种类和数量一致", "图形对称", "颜色变化"], answer: 1,
+          explain: "样式遍历要求一组图形包含的元素种类相同，每个元素出现次数也相同。" }
+      ]
+    },
+    { id: "kp3", title: "属性规律",
+      lesson: "属性规律考查图形的固有属性：\n\n" +
+        "1. 对称性：轴对称、中心对称、既是轴对称又是中心对称；\n" +
+        "2. 曲直性：全直线、全曲线、直曲混合；\n" +
+        "3. 开闭性：封闭图形、开放图形、半封闭图形；\n" +
+        "4. 数量属性：封闭区间数、线条数、点数等。\n\n" +
+        "判断技巧：元素不同时，先看属性再看数量。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "下列关于图形属性的说法，错误的是？",
+          options: ["轴对称图形至少有一条对称轴", "中心对称图形绕中心旋转180°与原图重合",
+            "所有封闭图形都是轴对称图形", "圆既是轴对称又是中心对称图形"], answer: 2,
+          explain: "封闭图形不一定是轴对称图形，如不规则的封闭图形可能没有对称轴。" },
+        { id: "q2", type: "choice", stem: "元素完全不同的一组图形，优先考虑？",
+          options: ["位置规律", "样式规律", "属性规律", "空间重构"], answer: 2,
+          explain: "元素完全不同时，优先考虑属性规律（对称性、曲直性、开闭性），再考虑数量规律。" }
+      ]
+    },
+    { id: "kp4", title: "空间重构",
+      lesson: "空间重构主要考查折纸盒和拆纸盒：\n\n" +
+        "1. 相对面：立体图形中相对的两个面在展开图中不相邻；\n" +
+        "2. 相邻面：展开图中相邻的面在立体图形中也相邻；\n" +
+        "3. 画边法：以一个面为基准，确定各边对应的面；\n" +
+        "4. 时针法：确定三个面的相对位置关系。\n\n" +
+        "判断技巧：先找相对面排除选项，再用画边法确定正确选项。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "正方体展开图中，相对的两个面在立体图形中？",
+          options: ["相邻", "相对", "重合", "垂直"], answer: 1,
+          explain: "正方体展开图中相对的两个面（如\"Z\"字型两端、同行/同列间隔一个面）在立体图形中是相对的，不可能相邻。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

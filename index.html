@@ -7,32 +7,98 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <h1 id="course-title">考公刷题</h1>
-        <p id="course-sub">解锁式学习</p>
-      </div>
-      <div class="progress-wrap">
-        <div class="progress-track">
-          <div class="progress-bar" id="progress-bar"></div>
+  <div class="home">
+    <div class="home-container">
+      <div class="home-header">
+        <h1>考公行测 · 解锁式刷题</h1>
+        <p>10 大专题 · 学练结合 · 闯关解锁 · 进度本地保存</p>
+        <div class="home-stats" id="home-stats">
+          <span><b id="total-completed">0</b>已通关</span>
+          <span><b id="total-topics">10</b>个专题</span>
+          <span><b id="total-nodes">0</b>个知识点</span>
         </div>
-        <div class="progress-text" id="progress-text">已通关 0 / 0</div>
       </div>
-      <ul id="kp-list"></ul>
-      <div class="reset">
-        <button class="btn ghost small" id="reset-btn">清空进度</button>
-      </div>
-    </aside>
-
-    <main class="main" id="main">
-      <!-- 动态渲染 -->
-    </main>
-
-    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+      <div class="topic-grid" id="topic-grid"></div>
+    </div>
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <script>
+    // 专题列表配置
+    var TOPICS = [
+      { id: "zhengzhi",   name: "政治理论",       icon: "🏛️", desc: "马哲原理、毛概、新时代理论、二十大精神与时事政治", file: "topics/zhengzhi.html" },
+      { id: "changshi", name: "常识判断",       icon: "💡", desc: "法律、经济、人文、科技、地理五大常识领域", file: "topics/changshi.html" },
+      { id: "yanyu",    name: "言语理解与表达", icon: "📖", desc: "逻辑填空、片段阅读、语句排序与填空", file: "topics/yanyu.html" },
+      { id: "shuliang", name: "数量关系",       icon: "🔢", desc: "数字推理、数学运算、工程与行程问题", file: "topics/shuliang.html" },
+      { id: "panduan",  name: "判断推理",       icon: "🧩", desc: "题型概览、解题策略与逻辑陷阱识别", file: "topics/panduan.html" },
+      { id: "tuxing",   name: "图形推理",       icon: "🎨", desc: "位置、样式、属性规律与空间重构", file: "topics/tuxing.html" },
+      { id: "dingyi",   name: "定义判断",       icon: "📋", desc: "单定义、多定义判断与关键词法", file: "topics/dingyi.html" },
+      { id: "arle",     name: "类比推理",       icon: "🔗", desc: "逻辑关系、言语关系与经验常识", file: "topics/arle.html" },
+      { id: "luoji",    name: "逻辑判断",       icon: "⚖️", desc: "翻译推理、加强削弱、前提假设与真假推理", file: "topics/luoji.html" },
+      { id: "ziliao",   name: "资料分析",       icon: "📊", desc: "增长率、比重变化、倍数翻番与综合分析", file: "topics/ziliao.html" }
+    ];
+
+    // 每个专题的知识点数量（用于进度显示）
+    var TOPIC_NODE_COUNTS = {
+      zhengzhi: 5, changshi: 5, yanyu: 5, shuliang: 5, panduan: 3,
+      tuxing: 4, dingyi: 3, arle: 4, luoji: 5, ziliao: 4
+    };
+
+    function getProgress(topicId) {
+      try {
+        var keys = Object.keys(localStorage);
+        var completed = 0;
+        keys.forEach(function (k) {
+          if (k.indexOf("gwy_progress_" + topicId + "_") === 0) {
+            var data = JSON.parse(localStorage.getItem(k));
+            if (data && data.completed) {
+              completed = Object.keys(data.completed).length;
+            }
+          }
+        });
+        return completed;
+      } catch (e) { return 0; }
+    }
+
+    function render() {
+      var grid = document.getElementById("topic-grid");
+      var totalCompleted = 0;
+      var totalNodes = 0;
+      var html = "";
+
+      TOPICS.forEach(function (t) {
+        var done = getProgress(t.id);
+        var total = TOPIC_NODE_COUNTS[t.id] || 3;
+        totalCompleted += done;
+        totalNodes += total;
+        var pct = Math.round((done / total) * 100);
+        var badge = "";
+        if (done === 0) {
+          badge = '<span class="badge">未开始</span>';
+        } else if (done >= total) {
+          badge = '<span class="badge done">已通关</span>';
+        } else {
+          badge = '<span class="badge in-progress">进行中</span>';
+        }
+
+        html +=
+          '<a href="' + t.file + '" class="topic-card">' +
+          '<div class="icon">' + t.icon + '</div>' +
+          '<h3>' + t.name + '</h3>' +
+          '<p class="desc">' + t.desc + '</p>' +
+          '<div class="meta">' +
+          '<span>' + done + ' / ' + total + ' 关</span>' +
+          '<div class="progress-mini"><div style="width:' + pct + '%"></div></div>' +
+          badge +
+          '</div>' +
+          '</a>';
+      });
+
+      grid.innerHTML = html;
+      document.getElementById("total-completed").textContent = totalCompleted;
+      document.getElementById("total-nodes").textContent = totalNodes;
+    }
+
+    render();
+  </script>
 </body>
 </html>

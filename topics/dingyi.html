@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 定义判断</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">定义判断</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "dingyi";
+var COURSE = {
+  title: "定义判断 · 解锁式刷题", subtitle: "单定义·多定义·关键词法", version: 1,
+  nodes: [
+    { id: "kp1", title: "单定义判断·关键词法",
+      lesson: "单定义判断的解题核心是关键词法：\n\n" +
+        "1. 提取关键词：主体、客体、目的、方式、条件；\n" +
+        "2. 逐一对比：将每个选项与关键词逐一对比；\n" +
+        "3. 排除法：只要有一个关键词不符合即可排除；\n" +
+        "4. 注意\"属于\"与\"不属于\"的提问方式。\n\n" +
+        "解题步骤：读定义→找关键词→看选项→对比排除。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"破窗效应\"是指如果一幢建筑物的窗户玻璃被打破后没有及时维修，别人就可能受到暗示性纵容去打烂更多的窗户。根据上述定义，下列属于破窗效应的是？",
+          options: [
+            "某小区物业及时维修了损坏的公共设施，小区环境保持良好",
+            "某街道一处垃圾未清理，后来垃圾越来越多",
+            "某学校制定了严格的规章制度，学生遵守纪律",
+            "某公司对迟到员工进行了处罚，迟到现象减少"
+          ], answer: 1,
+          explain: "破窗效应的关键是\"小问题未及时处理→引发更大问题\"。B项中垃圾未清理（小问题未处理）导致垃圾越来越多（更大问题），符合定义。" },
+        { id: "q2", type: "choice", stem: "\"沉没成本谬误\"是指人们在决策时受到过去已经发生的成本影响，而做出非理性决策。下列属于沉没成本谬误的是？",
+          options: [
+            "投资者因股票亏损而继续加仓",
+            "消费者因商品打折而购买",
+            "企业根据市场调研调整战略",
+            "学生根据考试成绩调整学习方法"
+          ], answer: 0,
+          explain: "A项中投资者因过去的亏损（沉没成本）而继续加仓（非理性决策），符合沉没成本谬误的定义。" }
+      ]
+    },
+    { id: "kp2", title: "多定义判断·辨析法",
+      lesson: "多定义判断要求辨析多个定义的异同：\n\n" +
+        "1. 理清每个定义的核心要素；\n" +
+        "2. 找出定义间的区别和联系；\n" +
+        "3. 根据提问方式，将选项与对应定义匹配；\n" +
+        "4. 注意提问是\"分别对应\"还是\"选一个符合\"。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"正当防卫\"是指为制止正在进行的不法侵害，对侵害人造成损害的行为。\"紧急避险\"是指为使合法权益免受正在发生的危险，不得已采取的避险行为。下列属于紧急避险的是？",
+          options: [
+            "甲为制止乙的抢劫，打伤乙",
+            "甲为躲避持刀歹徒，闯入他人住宅",
+           甲将正在行凶的乙制服",
+            "甲为阻止乙逃跑，将乙打伤"
+          ], answer: 1,
+          explain: "紧急避险的核心是\"不得已采取避险行为\"，甲为躲避歹徒（不得已）闯入他人住宅（避险行为），符合紧急避险定义。" },
+        { id: "q2", type: "choice", stem: "\"鲶鱼效应\"是指引入外部竞争者激活内部活力。\"木桶效应\"是指短板决定容量。下列说法正确的是？",
+          options: ["鲶鱼效应强调团队协作", "木桶效应强调弥补短处",
+            "两者都强调竞争", "两者都与团队规模有关"], answer: 1,
+          explain: "木桶效应的核心是短板决定容量，因此强调要弥补短处。" }
+      ]
+    },
+    { id: "kp3", title: "典型例题精讲",
+      lesson: "定义判断常见出题角度：\n\n" +
+        "1. 法律类定义：主体、客体、权利义务；\n" +
+        "2. 经济类定义：目的、方式、效果；\n" +
+        "3. 心理类定义：条件、行为、结果；\n" +
+        "4. 管理类定义：主体、对象、手段。\n\n" +
+        "高分技巧：将定义\"翻译\"成条件命题，逐一验证选项。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"羊群效应\"是指在群体决策中，个体容易受到他人影响而做出与多数人一致的决策。下列属于羊群效应的是？",
+          options: [
+            "投资者经过独立分析做出决策",
+            "居民抢购食盐是因为看到别人都在买",
+            "企业根据市场数据制定策略",
+            "学生根据自己的兴趣选择专业"
+          ], answer: 1,
+          explain: "B项中居民受他人影响（看到别人都在买）而做出相同决策（抢购食盐），符合羊群效应定义。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

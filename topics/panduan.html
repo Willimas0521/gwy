@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 判断推理</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">判断推理</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "panduan";
+var COURSE = {
+  title: "判断推理 · 解锁式刷题", subtitle: "题型概览·解题策略·陷阱识别", version: 1,
+  nodes: [
+    { id: "kp1", title: "题型概览与解题策略",
+      lesson: "判断推理包含四大子题型：\n\n" +
+        "1. 图形推理：考查观察、分析、推理能力，考点包括位置、样式、属性、空间重构；\n" +
+        "2. 定义判断：给出一个概念的定义，判断选项是否符合；\n" +
+        "3. 类比推理：给出一组相关词，找出逻辑关系最相似的选项；\n" +
+        "4. 逻辑判断：考查逻辑推理能力，包括翻译推理、加强削弱、前提假设等。\n\n" +
+        "总体策略：先易后难，合理分配时间。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "判断推理的四大子题型不包括？",
+          options: ["图形推理", "定义判断", "类比推理", "资料分析"], answer: 3,
+          explain: "判断推理包括图形推理、定义判断、类比推理和逻辑判断四大子题型，资料分析是独立的行测模块。" }
+      ]
+    },
+    { id: "kp2", title: "常见逻辑陷阱识别",
+      lesson: "判断推理中常见的逻辑陷阱：\n\n" +
+        "1. 偷换概念：选项将题干中的概念替换为相似但不同的概念；\n" +
+        "2. 以偏概全：用局部情况推导整体结论；\n" +
+        "3. 诉诸权威：用专家、权威的观点代替逻辑论证；\n" +
+        "4. 虚假因果：两个现象同时发生不代表因果关系；\n" +
+        "5. 循环论证：用结论本身作为论据。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"所有参加培训的人都通过了考试，所以培训是通过考试的原因。\" 这个推理的问题是？",
+          options: ["偷换概念", "虚假因果", "循环论证", "诉诸权威"], answer: 1,
+          explain: "培训和通过考试同时发生不代表培训是通过的原因，可能是这些人本身就优秀。" },
+        { id: "q2", type: "choice", stem: "\"专家说这个方法有效，所以它一定有效。\" 这个推理的问题是？",
+          options: ["以偏概全", "虚假因果", "诉诸权威", "偷换概念"], answer: 2,
+          explain: "用专家观点代替逻辑论证，属于诉诸权威的逻辑谬误。" }
+      ]
+    },
+    { id: "kp3", title: "综合解题方法论",
+      lesson: "判断推理综合解题方法：\n\n" +
+        "1. 图形推理：先整体后局部，先看元素种类再看规律；\n" +
+        "2. 定义判断：找准关键词，逐一与选项对比；\n" +
+        "3. 类比推理：先找逻辑关系，再看词性、感情色彩；\n" +
+        "4. 逻辑判断：先翻译题干，再运用逻辑规则推理。\n\n" +
+        "核心：养成\"翻译\"思维，将自然语言转化为逻辑语言。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "做定义判断题时，最关键的是？",
+          options: ["理解定义的每个关键词", "记住定义的原文", "猜测出题意图", "排除所有错误选项"], answer: 0,
+          explain: "定义判断的核心是找准关键词（主体、客体、目的、方式等），逐一与选项对比验证。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

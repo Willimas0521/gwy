@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 资料分析</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">资料分析</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "ziliao";
+var COURSE = {
+  title: "资料分析 · 解锁式刷题", subtitle: "增长率·比重·倍数·综合分析", version: 1,
+  nodes: [
+    { id: "kp1", title: "增长率相关",
+      lesson: "增长率是资料分析最核心的考点：\n\n" +
+        "1. 基本公式：增长率 r = (现期 - 基期) / 基期 × 100%；\n" +
+        "2. 现期 = 基期 × (1 + r%)；基期 = 现期 / (1 + r%)；\n" +
+        "3. 同比与环比：同比指与去年同期比，环比指与上一周期比；\n" +
+        "4. 速算技巧：百化分（1/8=12.5%）、截位直除、估算。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "某省2023年GDP为1200亿，2022年为1000亿，求增长率？",
+          options: ["16.7%", "20%", "25%", "120%"], answer: 1,
+          explain: "r = (1200-1000)/1000 = 200/1000 = 20%。" },
+        { id: "q2", type: "choice", stem: "基期800，增长率12.5%，现期约为？",
+          options: ["850", "875", "900", "925"], answer: 2,
+          explain: "12.5% = 1/8，现期 ≈ 800 × (1+1/8) = 800×1.125 = 900。" }
+      ]
+    },
+    { id: "kp2", title: "比重变化",
+      lesson: "比重变化是资料分析的高频考点：\n\n" +
+        "1. 基本公式：比重 = 部分 / 整体 × 100%；\n" +
+        "2. 基期比重 = 现期比重 × (1+整体增长率) / (1+部分增长率)；\n" +
+        "3. 比重变化判断：部分增长率 > 整体增长率，则比重上升；\n" +
+        "4. 比重变化量 = 现期比重 - 基期比重。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "某省2023年GDP增长率为8%，其中第一产业增长率为5%。则第一产业占GDP的比重？",
+          options: ["上升", "下降", "不变", "无法判断"], answer: 1,
+          explain: "第一产业增长率(5%) < GDP增长率(8%)，所以第一产业占GDP的比重下降。" },
+        { id: "q2", type: "choice", stem: "某市2023年总人口200万，同比增长2%；其中城镇人口120万，同比增长5%。城镇人口占总人口比重比上年？",
+          options: ["上升", "下降", "不变", "无法判断"], answer: 0,
+          explain: "城镇人口增长率(5%) > 总人口增长率(2%)，所以城镇人口占比上升。" }
+      ]
+    },
+    { id: "kp3", title: "倍数与翻番",
+      lesson: "倍数和翻番是资料分析的重要概念：\n\n" +
+        "1. 倍数：A是B的几倍 = A/B；\n" +
+        "2. 翻番：A翻n番 = A×2ⁿ；\n" +
+        "3. 增长率与倍数的关系：增长率为r，则现期是基期的(1+r)倍；\n" +
+        "4. 注意\"是...几倍\"与\"多...几倍\"的区别。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "2023年某公司营收5000万，2018年营收1000万，2023年营收是2018年的几倍？",
+          options: ["4倍", "5倍", "6倍", "8倍"], answer: 1,
+          explain: "5000/1000 = 5倍。" },
+        { id: "q2", type: "choice", stem: "某指标从2018年到2023年翻了2番，2018年为100，2023年为？",
+          options: ["200", "300", "400", "500"], answer: 2,
+          explain: "翻2番 = 100 × 2² = 100 × 4 = 400。" }
+      ]
+    },
+    { id: "kp4", title: "综合分析题",
+      lesson: "综合分析题是资料分析的压轴题型：\n\n" +
+        "1. 设问方式：通常要求判断多个说法的正误；\n" +
+        "2. 解题策略：先简单后复杂，先看不需要计算的选项；\n" +
+        "3. 常见陷阱：单位不一致、时间范围不匹配、概念混淆；\n" +
+        "4. 时间分配：综合分析题耗时较长，建议放在最后做。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "根据资料，以下说法正确的是？\nA. 2023年GDP增长率超过10%\nB. 第一产业占比上升\nC. 总人口增长率为2%\nD. 城镇人口超过总人口的60%",
+          options: ["A说法正确", "B说法正确", "C说法正确", "D说法正确"], answer: 2,
+          explain: "C项总人口增长率2%与之前计算一致，故选C。（注：此题需结合具体资料数据，此处为示例。实际考试中需仔细核对每个选项。）" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

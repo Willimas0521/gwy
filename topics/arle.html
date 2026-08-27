@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 类比推理</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">类比推理</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "arle";
+var COURSE = {
+  title: "类比推理 · 解锁式刷题", subtitle: "逻辑关系·言语关系·经验常识", version: 1,
+  nodes: [
+    { id: "kp1", title: "逻辑关系·全同与并列",
+      lesson: "逻辑关系是类比推理最基础的关系：\n\n" +
+        "1. 全同关系：两个概念的外延完全相同，如\"北京\"与\"首都\"；\n" +
+        "2. 并列关系：同一属下的不同种，分为矛盾关系和反对关系；\n" +
+        "   - 矛盾关系：非此即彼，如\"男\"与\"女\"；\n" +
+        "   - 反对关系：还有中间情况，如\"黑\"与\"白\"。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"钢琴：乐器\" 下列哪组关系与此最相似？",
+          options: ["苹果：水果", "汽车：火车", "工人：农民", "太阳：月亮"], answer: 0,
+          explain: "题干是种属关系（钢琴是乐器的一种），A项苹果是水果的一种，也是种属关系。" },
+        { id: "q2", type: "choice", stem: "\"男人：女人\" 下列哪组关系与此最相似？",
+          options: ["黑色：白色", "生：死", "大：小", "上：下"], answer: 1,
+          explain: "题干是矛盾关系（非男即女），B项生和死也是矛盾关系，非生即死。" }
+      ]
+    },
+    { id: "kp2", title: "逻辑关系·交叉与包含",
+      lesson: "交叉与包含关系：\n\n" +
+        "1. 交叉关系：两个概念的外延有且只有部分重合，如\"大学生\"与\"党员\"；\n" +
+        "2. 包含关系：一个概念的外延完全包含另一个概念，分为：\n" +
+        "   - 真包含：A包含B，如\"动物\"包含\"哺乳动物\"；\n" +
+        "   - 真包含于：A包含于B，如\"老虎\"包含于\"动物\"。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"医生：专家\" 下列哪组关系与此最相似？",
+          options: ["教师：党员", "工人：农民", "钢笔：文具", "树木：森林"], answer: 0,
+          explain: "题干是交叉关系（有的医生是专家，有的专家是医生），A项教师和党员也是交叉关系。" },
+        { id: "q2", type: "choice", stem: "\"水果：苹果\" 下列哪组关系与此最相似？",
+          options: ["蔬菜：白菜", "动物：哺乳动物", "树木：树根", "房子：窗户"], answer: 1,
+          explain: "题干是真包含关系（水果包含苹果），B项动物包含哺乳动物，也是真包含关系。" }
+      ]
+    },
+    { id: "kp3", title: "言语关系·近义与反义",
+      lesson: "言语关系考查词语的语义关联：\n\n" +
+        "1. 近义关系：意思相近的词，注意程度、感情色彩的区别；\n" +
+        "2. 反义关系：意思相反的词，注意绝对反义和相对反义；\n" +
+        "3. 象征关系：词语与其象征意义的关系；\n" +
+        "4. 比喻关系：本体与喻体的关系。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"快乐：高兴\" 下列哪组关系与此最相似？",
+          options: ["悲伤：难过", "美丽：丑陋", "勇敢：胆小", "聪明：愚蠢"], answer: 0,
+          explain: "题干是近义关系，A项悲伤和难过也是近义关系。B、C、D都是反义关系。" },
+        { id: "q2", type: "choice", stem: "\"黑暗：光明\" 下列哪组关系与此最相似？",
+          options: ["冷：热", "大：小", "生：死", "好：坏"], answer: 2,
+          explain: "题干是绝对反义关系（非此即彼），C项生和死也是绝对反义关系。其余为相对反义。" }
+      ]
+    },
+    { id: "kp4", title: "经验常识与理论常识",
+      lesson: "常识关系考查生活和科学常识：\n\n" +
+        "1. 经验常识：生活经验中的关系，如功能、属性、职业对应；\n" +
+        "2. 理论常识：科学理论中的关系，如因果、组成、来源；\n" +
+        "3. 功能对应：物品与其功能，如\"钟表：计时\"；\n" +
+        "4. 组成对应：部分与整体，如\"轮胎：汽车\"。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"钢笔：书写\" 下列哪组关系与此最相似？",
+          options: ["汽车：驾驶", "飞机：天空", "椅子：坐着", "手表：计时"], answer: 3,
+          explain: "题干是功能对应（钢笔用于书写），D项手表用于计时，也是功能对应。A是工具与动作，B是事物与场所，C是物品与使用方式。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

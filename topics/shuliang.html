@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 数量关系</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">数量关系</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "shuliang";
+var COURSE = {
+  title: "数量关系 · 解锁式刷题", subtitle: "数字推理·数学运算", version: 1,
+  nodes: [
+    { id: "kp1", title: "数字推理·等差数列",
+      lesson: "等差数列是数字推理的基础题型：\n\n" +
+        "1. 定义：从第二项起，每一项与前一项的差为常数d；\n" +
+        "2. 通项公式：aₙ = a₁ + (n-1)d；\n" +
+        "3. 求和公式：Sₙ = n(a₁ + aₙ)/2 = na₁ + n(n-1)d/2；\n" +
+        "4. 变式：二级等差（差数列构成等差）、三级等差。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "1 + 2 + … + 100 = ？",
+          options: ["4950", "5050", "5000", "5100"], answer: 1,
+          explain: "首尾配对法：(1+100)×100÷2 = 101×50 = 5050。" },
+        { id: "q2", type: "choice", stem: "数列 3, 7, 11, 15, ( )，下一项是？",
+          options: ["17", "19", "21", "23"], answer: 1,
+          explain: "公差d=4，a₅ = 15+4 = 19。" }
+      ]
+    },
+    { id: "kp2", title: "数字推理·倍数数列",
+      lesson: "倍数数列是另一类高频题型：\n\n" +
+        "1. 等比数列：从第二项起，每一项与前一项的比为常数q；\n" +
+        "2. 通项公式：aₙ = a₁ × q^(n-1)；\n" +
+        "3. 求和公式：Sₙ = a₁(1-qⁿ)/(1-q)（q≠1）；\n" +
+        "4. 变式：二级等比、等差×等比混合数列。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "数列 2, 6, 18, 54, ( )，下一项是？",
+          options: ["108", "162", "216", "270"], answer: 1,
+          explain: "公比q=3，a₅ = 54×3 = 162。" },
+        { id: "q2", type: "choice", stem: "1 + 1/2 + 1/4 + 1/8 = ？",
+          options: ["1.75", "1.875", "2", "2.125"], answer: 1,
+          explain: "等比数列求和：S₄ = 1×(1-(1/2)⁴)/(1-1/2) = (1-1/16)/(1/2) = 15/8 = 1.875。" }
+      ]
+    },
+    { id: "kp3", title: "数学运算·工程问题",
+      lesson: "工程问题核心公式：\n\n" +
+        "1. 工作总量 = 工作效率 × 工作时间；\n" +
+        "2. 合作效率 = 各自效率之和；\n" +
+        "3. 常设工作总量为1或效率的公倍数；\n" +
+        "4. 注意\"轮流工作\"\"中途请假\"等变式。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "甲单独做一项工程需10天，乙需15天，两人合作需几天？",
+          options: ["5天", "6天", "8天", "12天"], answer: 1,
+          explain: "1÷(1/10+1/15) = 1÷(3/30+2/30) = 1÷5/30 = 30/5 = 6天。" },
+        { id: "q2", type: "choice", stem: "甲、乙合作10天完成，甲单独做15天完成，乙单独做需几天？",
+          options: ["20天", "25天", "30天", "35天"], answer: 2,
+          explain: "1÷(1/10-1/15) = 1÷(3/30-2/30) = 1÷1/30 = 30天。" }
+      ]
+    },
+    { id: "kp4", title: "数学运算·行程问题",
+      lesson: "行程问题三大基本公式：\n\n" +
+        "1. 路程 = 速度 × 时间；\n" +
+        "2. 相遇问题：路程和 = 速度和 × 时间；\n" +
+        "3. 追及问题：路程差 = 速度差 × 时间；\n" +
+        "4. 流水行船：顺水速度 = 船速+水速，逆水速度 = 船速-水速。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "甲、乙两地相距300公里，两车同时从两地相向开出，甲车速度60km/h，乙车40km/h，经过多久相遇？",
+          options: ["2小时", "3小时", "4小时", "5小时"], answer: 2,
+          explain: "相遇时间 = 路程和÷速度和 = 300÷(60+40) = 300÷100 = 3小时。" },
+        { id: "q2", type: "choice", stem: "一辆车以60km/h的速度行驶，行驶3小时后提速到80km/h，再行驶2小时到达目的地，总路程是？",
+          options: ["340公里", "360公里", "380公里", "400公里"], answer: 0,
+          explain: "总路程 = 60×3 + 80×2 = 180 + 160 = 340公里。" }
+      ]
+    },
+    { id: "kp5", title: "数学运算·容斥原理",
+      lesson: "容斥原理解决集合计数问题：\n\n" +
+        "1. 两集合：|A∪B| = |A| + |B| - |A∩B|；\n" +
+        "2. 三集合：|A∪B∪C| = |A|+|B|+|C|-|A∩B|-|B∩C|-|A∩C|+|A∩B∩C|；\n" +
+        "3. 画图法：用韦恩图帮助分析；\n" +
+        "4. 注意\"只属于\"与\"属于\"的区别。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "某班50人，喜欢数学的30人，喜欢英语的25人，都喜欢的15人，两科都不喜欢的有几人？",
+          options: ["5人", "10人", "15人", "20人"], answer: 1,
+          explain: "至少喜欢一科的人数 = 30+25-15 = 40人，两科都不喜欢 = 50-40 = 10人。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

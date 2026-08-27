@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 常识判断</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">常识判断</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "changshi";
+var COURSE = {
+  title: "常识判断 · 解锁式刷题", subtitle: "法律·经济·人文·科技·地理", version: 1,
+  nodes: [
+    { id: "kp1", title: "法律常识",
+      lesson: "法律常识是常识判断的必考内容：\n\n1. 宪法：国家机构、公民基本权利和义务；\n2. 民法：民事行为能力、物权、合同、婚姻家庭；\n3. 刑法：刑事责任年龄、常见罪名；\n4. 行政法：行政许可、行政处罚、行政复议。\n\n技巧：关注\"应当\"\"可以\"\"不得\"等限定词。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "我国公民最基本的权利是？",
+          options: ["选举权和被选举权", "人身自由权", "言论自由", "受教育权"], answer: 1,
+          explain: "人身自由权是公民最基本的权利，是行使其他权利的前提和基础。" },
+        { id: "q2", type: "choice", stem: "下列属于正当防卫的是？",
+          options: ["事后报复", "事前防卫", "为制止正在进行的不法侵害造成损害", "防卫过当"], answer: 2,
+          explain: "正当防卫是为制止正在进行的不法侵害，对侵害人造成损害的行为。" }
+      ]
+    },
+    { id: "kp2", title: "经济常识",
+      lesson: "经济常识涵盖宏观和微观：\n\n1. 宏观经济：GDP、CPI、货币政策工具；\n2. 微观经济：供求关系、市场结构；\n3. 经济政策：财政政策与货币政策配合。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "CPI连续数月上涨，通常意味着？",
+          options: ["通货紧缩", "通货膨胀", "经济衰退", "失业率上升"], answer: 1,
+          explain: "CPI上涨意味着消费品价格普遍上涨，通常是通货膨胀的表现。" },
+        { id: "q2", type: "choice", stem: "央行降低存款准备金率会？",
+          options: ["货币供应量减少", "货币供应量增加", "利率上升", "经济降温"], answer: 1,
+          explain: "降低存款准备金率释放银行可用资金，增加货币供应量，属于宽松货币政策。" }
+      ]
+    },
+    { id: "kp3", title: "人文常识",
+      lesson: "人文常识涵盖文学、艺术、文化传统：\n\n1. 中国文学：四大名著、唐诗宋词；\n2. 外国文学：名家代表作；\n3. 文化常识：传统节日、礼仪制度；\n4. 艺术常识：音乐、绘画代表作品。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "下列不属于\"四大名著\"的是？",
+          options: ["《红楼梦》", "《水浒传》", "《聊斋志异》", "《西游记》"], answer: 2,
+          explain: "四大名著是《三国演义》《水浒传》《西游记》《红楼梦》。" },
+        { id: "q2", type: "choice", stem: "\"但愿人长久，千里共婵娟\"中的\"婵娟\"指？",
+          options: ["美人", "月亮", "太阳", "星辰"], answer: 1,
+          explain: "\"婵娟\"指月亮，出自苏轼《水调歌头》。" }
+      ]
+    },
+    { id: "kp4", title: "科技常识",
+      lesson: "科技常识涉及理化生基础知识：\n\n1. 物理：力学、电磁学基本原理；\n2. 化学：常见化学反应和生活应用；\n3. 生物：细胞结构、遗传变异；\n4. 前沿科技：AI、量子计算进展。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "下列属于物理变化的是？",
+          options: ["铁生锈", "蜡烛燃烧", "冰融化成水", "粮食酿酒"], answer: 2,
+          explain: "冰融化成水只是物质状态变化，没有新物质生成，属于物理变化。" },
+        { id: "q2", type: "choice", stem: "光合作用主要发生在植物细胞的？",
+          options: ["线粒体", "叶绿体", "细胞核", "核糖体"], answer: 1,
+          explain: "叶绿体是植物进行光合作用的场所，含有叶绿素。" }
+      ]
+    },
+    { id: "kp5", title: "地理常识",
+      lesson: "地理常识包括中国和世界地理：\n\n1. 中国地理：行政区划、地形地貌、气候特征；\n2. 世界地理：七大洲四大洋、主要国家首都；\n3. 自然地理：板块构造、气候类型。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "中国的\"四大高原\"是指？",
+          options: ["青藏高原、内蒙古高原、黄土高原、云贵高原",
+            "青藏高原、云贵高原、四川盆地、塔里木盆地",
+            "黄土高原、云贵高原、东北平原、华北平原",
+            "内蒙古高原、黄土高原、青藏高原、帕米尔高原"], answer: 0,
+          explain: "中国四大高原：青藏高原、内蒙古高原、黄土高原、云贵高原。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

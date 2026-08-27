@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 逻辑判断</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand"><h1 id="course-title">逻辑判断</h1><p id="course-sub">解锁式学习</p></div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div></div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "luoji";
+var COURSE = {
+  title: "逻辑判断 · 解锁式刷题", subtitle: "翻译推理·加强削弱·前提假设·真假推理", version: 1,
+  nodes: [
+    { id: "kp1", title: "翻译推理·充分必要条件",
+      lesson: "翻译推理是逻辑判断的基础：\n\n" +
+        "1. 充分条件：如果A，那么B → A→B；\n" +
+        "2. 必要条件：只有A，才B → B→A；\n" +
+        "3. 充要条件：当且仅当A，才B → A↔B；\n" +
+        "4. 逆否命题：A→B 等价于 ¬B→¬A；\n" +
+        "5. 递推：A→B，B→C 可得 A→C。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"如果天下雨，那么地会湿\"。下列推理正确的是？",
+          options: ["地湿了，所以天下雨了", "地没湿，所以天没下雨", "天下雨了，所以地没湿", "天没下雨，所以地会湿"], answer: 1,
+          explain: "原命题\"下雨→地湿\"，逆否命题\"地没湿→天没下雨\"，这是正确的推理。" },
+        { id: "q2", type: "choice", stem: "\"只有年满18岁，才能投票\"。下列推理正确的是？",
+          options: ["年满18岁，就能投票", "没年满18岁，就不能投票", "能投票，说明年满18岁了", "不能投票，说明没年满18岁"], answer: 2,
+          explain: "\"只有A才B\"翻译为B→A，即投票→年满18岁。C项\"能投票→年满18\"符合逆否等价。" }
+      ]
+    },
+    { id: "kp2", title: "加强削弱·论证分析",
+      lesson: "加强削弱题的核心是论证分析：\n\n" +
+        "1. 论证三要素：论点、论据、论证方式；\n" +
+        "2. 加强方式：肯定论点、增加论据、加强论证方式、排除他因；\n" +
+        "3. 削弱方式：否定论点、增加反例、削弱论证方式、另有他因；\n" +
+        "4. 力度比较：直接削弱论点 > 削弱论证 > 增加反例 > 另有他因。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"研究发现，每天喝两杯咖啡的人心脏病风险更低，因此咖啡对心脏有保护作用。\" 以下哪项最能削弱上述论证？",
+          options: ["咖啡含有咖啡因", "可能是喝咖啡的人生活习惯更健康",
+            "研究样本量较小", "心脏病受多种因素影响"], answer: 1,
+          explain: "B项指出可能是其他因素（生活习惯）导致心脏病风险低，而不是咖啡的作用，属于另有他因的削弱。" },
+        { id: "q2", type: "choice", stem: "\"某公司销售额上升，所以其市场份额扩大。\" 以下哪项最能加强上述论证？",
+          options: ["公司产品质量提高", "整个市场规模扩大",
+            "公司销售额增长速度快于行业平均", "公司推出了新产品"], answer: 2,
+          explain: "C项指出公司销售额增长速度快于行业平均，说明其市场份额确实扩大，直接加强了论证。" }
+      ]
+    },
+    { id: "kp3", title: "前提假设·必要条件",
+      lesson: "前提假设题要求找出论证成立的必要前提：\n\n" +
+        "1. 搭桥法：在论据和论点之间建立联系；\n" +
+        "2. 必要前提：没有这个前提，论证就不成立；\n" +
+        "3. 否定验证法：否定选项后论证是否还成立；\n" +
+        "4. 注意\"隐含前提\"和\"明确前提\"的区别。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"某企业利润增长，所以其效益提高。\" 上述论证隐含的前提是？",
+          options: ["利润是衡量效益的重要指标", "企业规模扩大",
+            "成本降低了", "市场需求增加了"], answer: 0,
+          explain: "论证从\"利润增长\"推出\"效益提高\"，需要假设利润是衡量效益的重要指标，否则论证不成立。" },
+        { id: "q2", type: "choice", stem: "\"某人考试成绩优秀，所以他聪明。\" 上述论证的必要前提是？",
+          options: ["考试成绩是衡量聪明的标准", "他学习努力",
+            "考试题目不难", "他没有作弊"], answer: 0,
+          explain: "论证从\"成绩优秀\"推出\"聪明\"，需要假设成绩与聪明相关，A项是必要前提。" }
+      ]
+    },
+    { id: "kp4", title: "归纳推理·结论型",
+      lesson: "归纳推理考查从题干推出结论的能力：\n\n" +
+        "1. 归纳推理：从个别到一般的推理；\n" +
+        "2. 结论型题目：根据题干信息，哪个选项一定为真；\n" +
+        "3. 注意\"可以推出\"和\"一定为真\"的区别；\n" +
+        "4. 常见错误：过度推理、偷换概念、以偏概全。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"所有大学生都努力学习，小明努力学习。\" 由此可以推出？",
+          options: ["小明一定是大学生", "小明可能是大学生",
+            "小明不是大学生", "所有努力学习的都是大学生"], answer: 1,
+          explain: "由\"所有大学生都努力\"和\"小明努力\"不能必然推出小明是大学生，但可以推出小明可能是大学生。" },
+        { id: "q2", type: "choice", stem: "\"有些鸟不会飞，企鹅是鸟。\" 由此可以推出？",
+          options: ["企鹅不会飞", "企鹅可能不会飞",
+            "所有鸟都会飞", "企鹅会飞"], answer: 1,
+          explain: "从\"有些鸟不会飞\"和\"企鹅是鸟\"不能必然推出企鹅不会飞，但可以推出企鹅可能不会飞。" }
+      ]
+    },
+    { id: "kp5", title: "真假推理·矛盾法",
+      lesson: "真假推理的核心方法是矛盾法：\n\n" +
+        "1. 矛盾关系：两个命题一真一假；\n" +
+        "2. 反对关系：两个命题至少一假；\n" +
+        "3. 下反对关系：两个命题至少一真；\n" +
+        "4. 解题步骤：找矛盾→绕开矛盾→判断其他命题真假。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "\"甲、乙、丙三人中只有一人说真话。甲说：是乙偷的。乙说：不是我偷的。丙说：是甲偷的。\" 真正偷东西的人是？",
+          options: ["甲", "乙", "丙", "无法确定"], answer: 1,
+          explain: "甲乙矛盾必有一真一假，丙必为假。丙说\"是甲偷的\"为假→不是甲偷的。假设甲说真（乙偷的），乙说假、丙说假，符合只有一真。故乙是偷窃者。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

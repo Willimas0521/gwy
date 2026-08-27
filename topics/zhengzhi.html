@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考公行测 · 政治理论</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="home-link" href="../index.html">← 返回首页</a>
+      <div class="brand">
+        <h1 id="course-title">政治理论</h1>
+        <p id="course-sub">解锁式学习</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="progress-text" id="progress-text">已通关 0 / 0</div>
+      </div>
+      <ul id="kp-list"></ul>
+      <div class="reset"><button class="btn ghost small" id="reset-btn">清空进度</button></div>
+    </aside>
+    <main class="main" id="main"></main>
+    <footer class="foot">纯静态 · 进度保存在本地浏览器 · 适合托管到 GitHub Pages</footer>
+  </div>
+<script>
+var TOPIC_ID = "zhengzhi";
+var COURSE = {
+  title: "政治理论 · 解锁式刷题",
+  subtitle: "马哲·毛概·新时代·时事政治",
+  version: 1,
+  nodes: [
+    {
+      id: "kp1", title: "马哲基本原理",
+      lesson: "马克思主义哲学是科学的世界观和方法论，核心包括辩证唯物主义和历史唯物主义。\n\n" +
+        "核心原理：\n" +
+        "1. 物质与意识：物质决定意识，意识对物质具有能动的反作用；\n" +
+        "2. 辩证法三大规律：对立统一规律（核心）、质量互变规律、否定之否定规律；\n" +
+        "3. 实践与认识：实践是认识的来源、动力、目的和检验标准。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "马克思主义哲学认为，世界的本原是？",
+          options: ["精神", "物质", "理念", "虚无"], answer: 1,
+          explain: "马克思主义哲学坚持彻底的唯物主义，认为世界的本原是物质，物质决定意识。" },
+        { id: "q2", type: "choice", stem: "辩证法的实质和核心是？",
+          options: ["质量互变规律", "对立统一规律", "否定之否定规律", "因果规律"], answer: 1,
+          explain: "对立统一规律是辩证法的实质和核心，它揭示了事物发展的源泉和动力。" }
+      ]
+    },
+    {
+      id: "kp2", title: "毛泽东思想",
+      lesson: "毛泽东思想是马克思主义中国化的第一次历史性飞跃。\n\n" +
+        "核心内容：\n" +
+        "1. 活的灵魂：实事求是、群众路线、独立自主；\n" +
+        "2. 新民主主义革命理论：中国革命分两步走；\n" +
+        "3. 社会主义改造理论：三大改造；\n" +
+        "4. 社会主义社会基本矛盾理论。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "毛泽东思想的活的灵魂是？",
+          options: ["武装斗争、统一战线、党的建设", "实事求是、群众路线、独立自主",
+            "理论联系实际、密切联系群众、批评与自我批评", "解放思想、实事求是、与时俱进"],
+          answer: 1,
+          explain: "毛泽东思想活的灵魂是实事求是、群众路线、独立自主。" },
+        { id: "q2", type: "choice", stem: "中国新民主主义革命的领导力量是？",
+          options: ["农民阶级", "民族资产阶级", "无产阶级", "城市小资产阶级"], answer: 2,
+          explain: "无产阶级（通过中国共产党的领导）是新民主主义革命的领导力量。" }
+      ]
+    },
+    {
+      id: "kp3", title: "中国特色社会主义理论体系",
+      lesson: "中国特色社会主义理论体系包括：\n\n" +
+        "1. 邓小平理论：回答\"什么是社会主义、怎样建设社会主义\"；\n" +
+        "2. \"三个代表\"重要思想：回答\"建设什么样的党、怎样建设党\"；\n" +
+        "3. 科学发展观：回答\"实现什么样的发展、怎样发展\"；\n" +
+        "4. 习近平新时代中国特色社会主义思想：新时代的指导思想。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "邓小平理论回答的核心问题是？",
+          options: ["建设什么样的党", "什么是社会主义、怎样建设社会主义",
+            "实现什么样的发展", "新时代中国特色社会主义"], answer: 1,
+          explain: "邓小平理论围绕\"什么是社会主义、怎样建设社会主义\"这一根本问题展开。" },
+        { id: "q2", type: "choice", stem: "科学发展观的核心立场是？",
+          options: ["以经济建设为中心", "以人为本", "全面协调可持续", "统筹兼顾"], answer: 1,
+          explain: "科学发展观的第一要义是发展，核心立场是以人为本，基本要求是全面协调可持续。" }
+      ]
+    },
+    {
+      id: "kp4", title: "新时代与二十大精神",
+      lesson: "中国特色社会主义进入新时代，是我国发展新的历史方位。\n\n" +
+        "二十大核心要点：\n" +
+        "1. 社会主要矛盾：人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾；\n" +
+        "2. 中国式现代化的五大特征；\n" +
+        "3. 中心任务：以中国式现代化全面推进中华民族伟大复兴。",
+      passRule: { needCorrect: 2, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "新时代我国社会主要矛盾是？",
+          options: [
+            "人民日益增长的物质文化需要同落后的社会生产之间的矛盾",
+            "人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾",
+            "无产阶级和资产阶级的矛盾", "生产力和生产关系的矛盾"
+          ], answer: 1,
+          explain: "党的十九大指出，我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。" },
+        { id: "q2", type: "multi", stem: "中国式现代化的主要特征包括？（多选）",
+          options: ["人口规模巨大的现代化", "全体人民共同富裕的现代化",
+            "物质文明和精神文明相协调的现代化", "人与自然和谐共生的现代化"],
+          answer: [0, 1, 2, 3],
+          explain: "中国式现代化五大特征：人口规模巨大、全体人民共同富裕、两个文明相协调、人与自然和谐共生、和平发展。" }
+      ]
+    },
+    {
+      id: "kp5", title: "时事政治要点",
+      lesson: "时事政治是常识判断的高频考点：\n\n" +
+        "1. 重要会议：中央全会、两会的核心议题；\n" +
+        "2. 重大政策：货币政策、财政政策的调整取向；\n" +
+        "3. 科技成就：重大科技项目突破；\n" +
+        "4. 外交动态：重要峰会、双边关系进展。",
+      passRule: { needCorrect: 1, minAccuracy: 1.0 },
+      exercises: [
+        { id: "q1", type: "choice", stem: "当前我国宏观经济政策的总体取向是？",
+          options: ["适度从紧", "积极的财政政策和稳健的货币政策", "全面紧缩", "量化宽松"], answer: 1,
+          explain: "当前我国实施积极的财政政策和稳健的货币政策，这是中央经济工作会议确定的宏观政策取向。" }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -20,6 +20,21 @@
 
   var STORAGE_KEY = "gwy_quiz_progress_v1";
   var WRONG_KEY = "gwy_quiz_wrong_v1";
+  var HISTORY_KEY = "gwy_quiz_history_v1";
+
+  // 答题历史记录（供记录页和智能组卷使用）
+  function addHistoryRecord(record) {
+    try {
+      var h = localStorage.getItem(HISTORY_KEY);
+      h = h ? JSON.parse(h) : [];
+      h.push(record);
+      if (h.length > 2000) h = h.slice(-2000);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(h));
+    } catch (e) {}
+  }
+  if (!window.QuizHistory) {
+    window.QuizHistory = { add: addHistoryRecord };
+  }
 
   // ---------- 数据持久化 ----------
   function loadStorage(key, def) {
@@ -122,6 +137,7 @@
       '<div class="stat-card"><div class="stat-num">' + list.length + '</div><div class="stat-label">个专题</div></div>' +
       '<div class="stat-card"><div class="stat-num">' + getTotalAnswered() + '</div><div class="stat-label">已答题数</div></div>' +
       '</div>' +
+      '<div style="margin-top:14px;"><a href="records.html" style="display:inline-block;background:linear-gradient(90deg,#7c3aed,#e0584b);color:#fff;padding:8px 22px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;">📊 刷题记录 & 智能组卷</a></div>' +
       '</div>' +
       '<div class="quiz-grid">';
 
@@ -334,6 +350,17 @@
     var correct = isCorrect(q, selected);
     state.showAnswer[q.id] = true;
 
+    // 记录答题历史（供记录页和智能组卷使用）
+    if (window.QuizHistory) {
+      window.QuizHistory.add({
+        topicId: state.topicId,
+        qid: q.id,
+        timestamp: Date.now(),
+        correct: correct,
+        timeSpent: Math.round((Date.now() - state.startTime) / 1000)
+      });
+    }
+
     if (!correct && !state.fromWrong) {
       addToWrongBook(state.topicId, q.id);
       state.wrongIds.push(q.id);
@@ -429,6 +456,7 @@
       '<div class="result-actions">' +
       '<button class="btn primary" id="retry-btn">再练一轮</button>' +
       '<button class="btn ghost" id="wrongbook-btn">查看错题本</button>' +
+      '<button class="btn ghost" id="records-btn">刷题记录</button>' +
       '<button class="btn ghost" id="back-home">返回首页</button>' +
       '</div>' +
       '</div>';
@@ -458,6 +486,9 @@
       renderWrongbook();
     });
     document.getElementById("back-home").addEventListener("click", renderHome);
+    document.getElementById("records-btn").addEventListener("click", function () {
+      window.location.href = "records.html";
+    });
   }
 
   function formatTime(sec) {

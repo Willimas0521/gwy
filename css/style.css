@@ -251,3 +251,11 @@ footer.foot {
   .home-header h1 { font-size: 26px; }
   .topic-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== 题图（静态/数据库题通用） ===== */
+.q-images { margin: 12px 0 4px; display: flex; flex-direction: column; gap: 10px; }
+.q-img {
+  display: block; max-width: 100%; width: auto; height: auto;
+  max-height: 360px; border: 1px solid var(--line);
+  border-radius: 10px; background: #fff; padding: 6px; cursor: zoom-in;
+}

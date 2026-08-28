@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>题库管理 · 导入</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="home">
+    <div class="home-container" style="max-width:820px;">
+      <div class="home-header">
+        <h1>题库管理 · 导入</h1>
+        <p>仅管理员可导入题目。题目写入数据库后，学员在刷题页即可练习。</p>
+      </div>
+
+      <div id="admin-gate" class="lesson" style="margin-bottom:20px;">
+        <p>正在校验管理员权限…</p>
+      </div>
+
+      <div id="admin-panel" style="display:none;">
+        <div class="lesson">
+          <h2>方式一：一键导入现有静态题库</h2>
+          <p>把仓库里 <code>js/quiz-data.js</code> 的题批量导入数据库。请为每个专题选择一个默认知识点（导入后可在数据库微调）。</p>
+          <div id="topic-mapping"></div>
+          <div class="actions">
+            <button class="btn primary" id="import-quizdata">导入现有题库</button>
+          </div>
+        </div>
+
+        <div class="lesson" style="margin-top:20px;">
+          <h2>方式二：粘贴 JSON 导入</h2>
+          <p>格式：<code>{"topic":"专题名","knowledge":"知识点名","status":"published","questions":[{"type":"choice","stem":"题干","options":["A","B","C","D"],"answer":1,"explain":"解析","difficulty":2}]}</code></p>
+          <textarea id="json-input" rows="10" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font-family:monospace;font-size:13px;"></textarea>
+          <div class="actions">
+            <button class="btn primary" id="import-json">导入 JSON</button>
+            <button class="btn ghost" id="load-sample">填入示例</button>
+          </div>
+        </div>
+
+        <div class="lesson" style="margin-top:20px;">
+          <h2>导入日志</h2>
+          <pre id="log" style="background:#0f172a;color:#e2e8f0;padding:14px;border-radius:10px;max-height:320px;overflow:auto;font-size:12px;white-space:pre-wrap;"></pre>
+        </div>
+      </div>
+
+      <p style="margin-top:24px;"><a href="index.html">← 返回首页</a></p>
+    </div>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/quiz-data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

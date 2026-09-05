@@ -16,6 +16,8 @@
 
   var STORAGE_KEY = "gwy_progress_" + TOPIC_ID + "_v" + COURSE.version;
   var FAILS_BEFORE_EXPLAIN = 2;
+  // 预览模式：URL 带 ?preview=1 时解除门控，便于编辑/检查所有知识点
+  var PREVIEW = /[?&]preview=1\b/.test(location.search);
 
   // ---------- 进度状态 ----------
   var progress = loadProgress();
@@ -38,6 +40,7 @@
     return !!progress.completed[id];
   }
   function isUnlocked(index) {
+    if (PREVIEW) return true;
     if (index === 0) return true;
     var prev = COURSE.nodes[index - 1];
     return isCompleted(prev.id);

@@ -16,8 +16,6 @@
 
   var STORAGE_KEY = "gwy_progress_" + TOPIC_ID + "_v" + COURSE.version;
   var FAILS_BEFORE_EXPLAIN = 2;
-  // 预览模式：URL 带 ?preview=1 时解除门控，便于编辑/检查所有知识点
-  var PREVIEW = /[?&]preview=1\b/.test(location.search);
 
   // ---------- 进度状态 ----------
   var progress = loadProgress();
@@ -39,11 +37,12 @@
   function isCompleted(id) {
     return !!progress.completed[id];
   }
+  // 编辑期：临时全部解锁，方便预览/修改内容。
+  // 恢复闯关门控：把下面一行替换为
+  //   if (index === 0) return true;
+  //   return isCompleted(COURSE.nodes[index - 1].id);
   function isUnlocked(index) {
-    if (PREVIEW) return true;
-    if (index === 0) return true;
-    var prev = COURSE.nodes[index - 1];
-    return isCompleted(prev.id);
+    return true;
   }
   function nodeById(id) {
     return COURSE.nodes.find(function (n) { return n.id === id; });
